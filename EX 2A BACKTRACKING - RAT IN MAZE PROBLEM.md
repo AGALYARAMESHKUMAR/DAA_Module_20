@@ -4,15 +4,12 @@ To implement the Rat in a Maze problem using backtracking and find all possible 
 
 
 ## Algorithm
-1. Start from the top-left cell of the maze.
+1. Start at the top-left corner (0, 0) and mark it as visited.
+2. Check if the current position is valid (inside bounds, open path, and unvisited).
+3. Recursively explore all four possible directions (up, down, left, right) from the current position.
+4. If moving in a direction leads to the destination (n-1, n-1), return True; otherwise, backtrack.
+5. If the destination is reached, print the path; otherwise, declare that no solution exists.
 
-2. Move forward only if the current cell is within bounds and not blocked (i.e., value is 1).
-
-3. Mark the current cell in the solution path.
-
-4. Recursively try to move right or down to reach the destination.
-
-5. If no move leads to the destination, backtrack and unmark the cell.
    
 
 ## Program:
