@@ -1,26 +1,72 @@
 # EX 2A BACKTRACKING - RAT IN MAZE PROBLEM
-## DATE:
 ## AIM:
 To implement the Rat in a Maze problem using backtracking and find all possible paths from the start to the destination in a given maze.
 
 
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+1. Start from the top-left cell of the maze.
+
+2. Move forward only if the current cell is within bounds and not blocked (i.e., value is 1).
+
+3. Mark the current cell in the solution path.
+
+4. Recursively try to move right or down to reach the destination.
+
+5. If no move leads to the destination, backtrack and unmark the cell.
+   
 
 ## Program:
 ```
 /*
 Program to implement Rat in a Maze.
-Developed by: 
-Register Number:  
+Developed by: Agalya R
+Register Number:  212222040003
 */
+```
+```
+n=n = 4
+def isValid(n, maze, x, y, res):
+	if x >= 0 and y >= 0 and x < n and y < n and maze[x][y] == 1 and res[x][y] == 0:
+		return True
+	return False
+
+def RatMaze(n, maze, move_x, move_y, x, y, res):
+	if x == n-1 and y == n-1:
+		return True
+	for i in range(4):
+		x_new = x + move_x[i]
+		y_new = y + move_y[i]
+		if isValid(n, maze, x_new, y_new, res):
+			res[x_new][y_new] = 1
+			if RatMaze(n, maze, move_x, move_y, x_new, y_new, res):
+				return True
+			res[x_new][y_new] = 0
+	return False
+
+def solveMaze(maze):
+	res = [[0 for i in range(n)] for i in range(n)]
+	res[0][0] = 1
+	move_x = [-1, 1, 0, 0]
+	move_y = [0, 0, -1, 1]
+
+	if RatMaze(n, maze, move_x, move_y, 0, 0, res):
+		for i in range(n):
+			for j in range(n):
+				print(res[i][j], end=' ')
+			print()
+	else:
+		print('Solution does not exist')
+
+maze = [[1, 0, 0, 0],
+		[1, 1, 0, 1],
+		[0, 1, 0, 0],
+		[1, 1, 1, 1]]
+solveMaze(maze)
 ```
 
 ## Output:
+![201](https://github.com/user-attachments/assets/0a8afb30-ebf0-4b56-b5cd-ee68714e2c51)
+
 
 
 
